@@ -415,12 +415,12 @@ var graph_viz = (function(){
 
 			edgepaths.attr('d', function (d) {
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
-				console.log("YTMND2");
+				console.log("YTMND3");
 				var midx = (d.source.x + d.target.x) / 2;
 				var midy = (d.source.y + d.target.y) / 2;
-				return 'M' + d.source.x + ',' + d.source.y
-				    + 'S' + midx + ',' + midy;
-				    + ' ' + d.target.x + ',' + d.target.y;
+				return 'M ' + d.source.x + ' ' + d.source.y
+				    + ' S ' + midx + ' ' + midy
+				    + ' ' + d.target.x + ' ' + d.target.y;
 			});
 
 			edgelabels.attr('transform', function (d) {
