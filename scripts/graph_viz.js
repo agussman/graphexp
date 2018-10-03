@@ -434,7 +434,7 @@ var graph_viz = (function(){
 				var rx = (d.target.x - d.source.x) / 4;
 				var ry = (d.target.y - d.source.y) / 4;
 				return 'M ' + d.source.x + ' ' + d.source.y
-				    + ' A ' + rx + ' ' + ry + ' 0 1 1 '+ d.target.x + ' ' + d.target.y;
+				    + ' A ' + rx + ' ' + ry + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
 			});
 
 			edgelabels.attr('transform', function (d) {
