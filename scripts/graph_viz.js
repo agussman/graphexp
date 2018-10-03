@@ -414,7 +414,9 @@ var graph_viz = (function(){
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
 			edgepaths.attr('d', function (d) {
-				return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+				console.log("YTMND");
+				return 'M ' + d.source.x + ' ' + d.source.y + ' C ' + d.target.x + ' ' + d.target.y;
 			});
 
 			edgelabels.attr('transform', function (d) {
