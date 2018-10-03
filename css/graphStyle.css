@@ -55,6 +55,18 @@
   stroke-opacity: 0.6;
 }
 
+.links path {
+  stroke: #990;
+  stroke-opacity: 0.6;
+}
+
+path {
+  stroke: #099;
+  stroke-opacity: 0.6;
+}
+
+
+
 /*
 
 .nodes circle {
