@@ -405,11 +405,20 @@ var graph_viz = (function(){
 		// handling simulation steps
 		// move the nodes and links at each simulation step, following this rule:
 		function ticked() {
-			_links
-				.attr("x1", function(d) { return d.source.x; })
-				.attr("y1", function(d) { return d.source.y; })
-				.attr("x2", function(d) { return d.target.x; })
-				.attr("y2", function(d) { return d.target.y; });
+			_links.attr('d', function (d) {
+				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+				console.log("YTMND T");
+				var midx = (d.source.x + d.target.x) / 2;
+				var midy = (d.source.y + d.target.y) / 2;
+				//return 'M ' + d.source.x + ' ' + d.source.y
+				//    + ' S ' + midx + ' ' + midy
+				//    + ' ' + d.target.x + ' ' + d.target.y;
+				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
+				var rx = (d.target.x - d.source.x) / 4;
+				var ry = (d.target.y - d.source.y) / 4;
+				return 'M ' + d.source.x + ' ' + d.source.y
+				    + ' A ' + rx + ' ' + ry + ' 0 1 1 '+ d.target.x + ' ' + d.target.y;
+			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
