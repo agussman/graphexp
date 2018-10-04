@@ -324,6 +324,8 @@ var graph_viz = (function(){
 
 		//////////////////////////////////////
 		// link handling
+		var bilinks = [];
+
 	 
 		//attach the data
 		var all_links = svg_graph.selectAll(".active_edge")
@@ -414,10 +416,11 @@ var graph_viz = (function(){
 				//    + ' S ' + midx + ' ' + midy
 				//    + ' ' + d.target.x + ' ' + d.target.y;
 				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
-				var rx = (d.target.x - d.source.x) / 4;
-				var ry = (d.target.y - d.source.y) / 4;
+				var dx = (d.target.x - d.source.x);
+				var dy = (d.target.y - d.source.y);
+				var dr = Math.sqrt(dx * dx + dy * dy);
 				return 'M ' + d.source.x + ' ' + d.source.y
-				    + ' A ' + rx + ' ' + ry + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
+				    + ' A ' + dx + ' ' + dy + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
 			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
