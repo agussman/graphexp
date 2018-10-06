@@ -187,6 +187,7 @@ var graph_viz = (function(){
 			// retrieve the links between nodes and pinned nodes
 			_Links = d.links.concat(previous_links_data); // first gather the links
 			_Links = find_active_links(_Links,_Nodes); // then find the ones that are between active nodes
+			// TODO Insert bilinks here?
 
 		}
 
