@@ -184,6 +184,7 @@ var graph_viz = (function(){
 			_Nodes = updateAdd(_Nodes,pinned_nodes_data);
 			// add coordinates to the new active nodes that already existed in the previous step
 			_Nodes = transfer_coordinates(_Nodes,old_Nodes);
+			// TODO: Change how we manage the _Links / links relationship
 			// retrieve the links between nodes and pinned nodes
 			_Links = d.links.concat(previous_links_data); // first gather the links
 			_Links = find_active_links(_Links,_Nodes); // then find the ones that are between active nodes
