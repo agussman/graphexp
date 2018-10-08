@@ -173,7 +173,11 @@ var graph_viz = (function(){
 			var previous_nodes_data = previous_nodes.data();
 			old_Nodes = updateAdd(old_Nodes,previous_nodes_data);
 			var previous_links =  _svg.selectAll(".active_edge");
+			console.log("previous_links");
+			console.log(previous_links);
 			var previous_links_data = previous_links.data();
+			console.log("previous_links_data");
+			console.log(previous_links_data);
 			old_Links = updateAdd(old_Links,previous_links_data);
 
 			// handle the pinned nodes
@@ -422,7 +426,7 @@ var graph_viz = (function(){
 
 
 			_links.attr('d', function (d) {
-				console.log("YTMND T");
+				//console.log("YTMND T");
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
 				  return "M" + d[0].x + "," + d[0].y
 					+ "S" + d[1].x + "," + d[1].y
