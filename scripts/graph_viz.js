@@ -415,14 +415,14 @@ var graph_viz = (function(){
 
 			var bilinks = [];
 
-			_links.forEach(function(link) {
-				var s = link.source = nodeById.get(link.source),
-					t = link.target = nodeById.get(link.target),
-					i = {}; // intermediate node
-				_nodes.push(i);
-				links.push({source: s, target: i}, {source: i, target: t});
-				bilinks.push([s, i, t]);
-			  });
+//			_links.forEach(function(link) {
+//				var s = link.source = nodeById.get(link.source),
+//					t = link.target = nodeById.get(link.target),
+//					i = {}; // intermediate node
+//				_nodes.push(i);
+//				links.push({source: s, target: i}, {source: i, target: t});
+//				bilinks.push([s, i, t]);
+//			  });
 
 
 			_links.attr('d', function (d) {
