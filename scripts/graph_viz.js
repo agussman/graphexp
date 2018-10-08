@@ -428,9 +428,9 @@ var graph_viz = (function(){
 			_links.attr('d', function (d) {
 				//console.log("YTMND T");
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
-				  return "M" + d[0].x + "," + d[0].y
-					+ "S" + d[1].x + "," + d[1].y
-					+ " " + d[2].x + "," + d[2].y;
+//				  return "M" + d[0].x + "," + d[0].y
+//					+ "S" + d[1].x + "," + d[1].y
+//					+ " " + d[2].x + "," + d[2].y;
 
 //				var midx = (d.source.x + d.target.x) / 2;
 //				var midy = (d.source.y + d.target.y) / 2;
@@ -441,8 +441,8 @@ var graph_viz = (function(){
 //				var dx = (d.target.x - d.source.x);
 //				var dy = (d.target.y - d.source.y);
 //				var dr = Math.sqrt(dx * dx + dy * dy);
-//				return 'M ' + d.source.x + ' ' + d.source.y
-//				    + ' A ' + dx + ' ' + dy + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
+				return 'M ' + d.source.x + ' ' + d.source.y
+				    + ' A ' + dx + ' ' + dy + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
 			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
