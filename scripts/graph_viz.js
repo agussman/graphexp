@@ -438,9 +438,9 @@ var graph_viz = (function(){
 //				    + ' S ' + midx + ' ' + midy
 //				    + ' ' + d.target.x + ' ' + d.target.y;
 				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
-//				var dx = (d.target.x - d.source.x);
-//				var dy = (d.target.y - d.source.y);
-//				var dr = Math.sqrt(dx * dx + dy * dy);
+				var dx = (d.target.x - d.source.x);
+				var dy = (d.target.y - d.source.y);
+				var dr = Math.sqrt(dx * dx + dy * dy);
 				return 'M ' + d.source.x + ' ' + d.source.y
 				    + ' A ' + dx + ' ' + dy + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
 			});
