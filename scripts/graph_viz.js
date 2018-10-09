@@ -377,11 +377,11 @@ var graph_viz = (function(){
 		//any links with duplicate source and target get an incremented 'linknum'
 		for (var i=0; i<_links.length; i++) {
 			if (i != 0 &&
-				links[i].source == links[i-1].source &&
-				links[i].target == links[i-1].target) {
-					links[i].linknum = links[i-1].linknum + 1;
+				_links[i].source == _links[i-1].source &&
+				_links[i].target == _links[i-1].target) {
+					_links[i].linknum = _links[i-1].linknum + 1;
 				}
-			else {links[i].linknum = 1;};
+			else {_links[i].linknum = 1;};
 		};
 
 
