@@ -362,6 +362,28 @@ var graph_viz = (function(){
 		edgepaths = edgepaths.merge(all_edgepaths);
 		edgelabels = edgelabels.merge(all_edgelabels);
 
+		//sort links by source, then target
+		_links.sort(function(a,b) {
+			if (a.source > b.source) {return 1;}
+			else if (a.source < b.source) {return -1;}
+			else {
+				if (a.target > b.target) {return 1;}
+				if (a.target < b.target) {return -1;}
+				else {return 0;}
+			}
+		});
+
+		//
+		//any links with duplicate source and target get an incremented 'linknum'
+		for (var i=0; i<_links.length; i++) {
+			if (i != 0 &&
+				links[i].source == links[i-1].source &&
+				links[i].target == links[i-1].target) {
+					links[i].linknum = links[i-1].linknum + 1;
+				}
+			else {links[i].linknum = 1;};
+		};
+
 
 		///////////////////////////////////
 		// node handling
@@ -440,16 +462,17 @@ var graph_viz = (function(){
 				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
 				var dx = (d.target.x - d.source.x);
 				var dy = (d.target.y - d.source.y);
-				var dr = Math.sqrt(dx * dx + dy * dy);
+				//var dr = Math.sqrt(dx * dx + dy * dy);
+				var dr = 75 / d.linknum;
 				return 'M ' + d.source.x + ' ' + d.source.y
-				    + ' A ' + dx + ' ' + dy + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
+				    + ' A ' + dr + ' ' + dr + ' 0 0,1 '+ d.target.x + ' ' + d.target.y;
 			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
 			edgepaths.attr('d', function (d) {
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
-				console.log("YTMND T");
+				//console.log("YTMND T");
 				var midx = (d.source.x + d.target.x) / 2;
 				var midy = (d.source.y + d.target.y) / 2;
 				//return 'M ' + d.source.x + ' ' + d.source.y
