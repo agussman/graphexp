@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Main module. Handle the viualization, display data and layers.
+// Main module. Handle the visualization, display data and layers.
 
 var graph_viz = (function(){
 	"use strict";
