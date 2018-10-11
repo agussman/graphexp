@@ -190,6 +190,8 @@ var graph_viz = (function(){
 			_Nodes = transfer_coordinates(_Nodes,old_Nodes);
 			// TODO: Change how we manage the _Links / links relationship
 			// retrieve the links between nodes and pinned nodes
+			console.log("_Links before d.links.concat(previous_links_data");
+			console.log(_Links);
 			_Links = d.links.concat(previous_links_data); // first gather the links
 			_Links = find_active_links(_Links,_Nodes); // then find the ones that are between active nodes
 			// TODO Insert bilinks here?
