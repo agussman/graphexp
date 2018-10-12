@@ -466,8 +466,8 @@ var graph_viz = (function(){
 				var dy = (d.target.y - d.source.y);
 				//var dr = Math.sqrt(dx * dx + dy * dy);
 				var dr = 75 / d.linknum;
-				return 'M ' + d.source.x + ' ' + d.source.y
-				    + ' A ' + dr + ' ' + dr + ' 0 0,1 '+ d.target.x + ' ' + d.target.y;
+				// return 'M ' + d.source.x + ' ' + d.source.y
+				//     + ' A ' + dr + ' ' + dr + ' 0 0,1 '+ d.target.x + ' ' + d.target.y;
 			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
