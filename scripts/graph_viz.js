@@ -501,7 +501,7 @@ var graph_viz = (function(){
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
 			console.log("edgepaths");
-			console.log(edgepaths);
+			console.log(edgepaths[0].length);
 
 			//sort edgepaths by source, then target
 			edgepaths.sort(function(a,b) {
