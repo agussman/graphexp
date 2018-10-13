@@ -386,6 +386,28 @@ var graph_viz = (function(){
 			else {_links[i].linknum = 1;};
 		};
 
+		//sort edgepaths by source, then target
+		_edgepaths.sort(function(a,b) {
+			if (a.source > b.source) {return 1;}
+			else if (a.source < b.source) {return -1;}
+			else {
+				if (a.target > b.target) {return 1;}
+				if (a.target < b.target) {return -1;}
+				else {return 0;}
+			}
+		});
+
+		//
+		//any edgepaths with duplicate source and target get an incremented 'linknum'
+		for (var i=0; i<_edgepaths.length; i++) {
+			if (i != 0 &&
+				_edgepaths[i].source == _edgepaths[i-1].source &&
+				_edgepaths[i].target == _edgepaths[i-1].target) {
+					_edgepaths[i].linknum = _edgepaths[i-1].linknum + 1;
+				}
+			else {_edgepaths[i].linknum = 1;};
+		};
+
 
 		///////////////////////////////////
 		// node handling
@@ -490,7 +512,7 @@ var graph_viz = (function(){
 
 				var dx = d.target.x - d.source.x,
 				dy = d.target.y - d.source.y,
-				dr = Math.sqrt(dx * dx + dy * dy);
+				dr = Math.sqrt(dx * dx + dy * dy) / d.linknum;
 				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
 			});
 
