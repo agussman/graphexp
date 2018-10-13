@@ -404,8 +404,12 @@ var graph_viz = (function(){
 				edgepaths[i].source == edgepaths[i-1].source &&
 				edgepaths[i].target == edgepaths[i-1].target) {
 					edgepaths[i].linknum = edgepaths[i-1].linknum + 1;
+					console.log("linknum: ?");
 				}
-			else {edgepaths[i].linknum = 1;};
+			else {
+				console.log("linknum: 1");
+				edgepaths[i].linknum = 1;
+			};
 		};
 
 
