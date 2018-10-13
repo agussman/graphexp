@@ -500,6 +500,9 @@ var graph_viz = (function(){
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
+			console.log("edgepaths");
+			console.log(edgepaths);
+
 			//sort edgepaths by source, then target
 			edgepaths.sort(function(a,b) {
 				if (a.source > b.source) {return 1;}
