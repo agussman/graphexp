@@ -449,6 +449,7 @@ var graph_viz = (function(){
 //			  });
 
 
+			// NOt sure this is used?
 			_links.attr('d', function (d) {
 				//console.log("YTMND T");
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
@@ -472,19 +473,25 @@ var graph_viz = (function(){
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
+			// This appears to be the actual drawn edges?
 			edgepaths.attr('d', function (d) {
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
 				//console.log("YTMND T");
-				var midx = (d.source.x + d.target.x) / 2;
-				var midy = (d.source.y + d.target.y) / 2;
+				// var midx = (d.source.x + d.target.x) / 2;
+				// var midy = (d.source.y + d.target.y) / 2;
 				//return 'M ' + d.source.x + ' ' + d.source.y
 				//    + ' S ' + midx + ' ' + midy
 				//    + ' ' + d.target.x + ' ' + d.target.y;
 				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
-				var rx = (d.target.x - d.source.x) / 4;
-				var ry = (d.target.y - d.source.y) / 4;
+				// var rx = (d.target.x - d.source.x) / 4;
+				// var ry = (d.target.y - d.source.y) / 4;
 				// return 'M ' + d.source.x + ' ' + d.source.y
 				//     + ' A ' + rx + ' ' + ry + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
+
+				var dx = d.target.x - d.source.x,
+				dy = d.target.y - d.source.y,
+				dr = Math.sqrt(dx * dx + dy * dy);
+				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
 			});
 
 			edgelabels.attr('transform', function (d) {
