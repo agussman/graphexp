@@ -337,19 +337,19 @@ var graph_viz = (function(){
 		//attach the data
 		var all_links = svg_graph.selectAll(".active_edge")
 			.data(_Links, function(d) { return d.id; });
-		var all_edgepaths = svg_graph.selectAll(".active_edgepath")
+		var alledgepaths = svg_graph.selectAll(".active_edgepath")
 			.data(_Links, function(d) { return d.id; });
 		var all_edgelabels = svg_graph.selectAll(".active_edgelabel")
 			.data(_Links, function(d) { return d.id; });
 	  
 		// links not active anymore are classified old_links
 		all_links.exit().classed("old_edge0",true).classed("active_edge",false);
-		all_edgepaths.exit().classed("old_edgepath0",true).classed("active_edgepath",false);
+		alledgepaths.exit().classed("old_edgepath0",true).classed("active_edgepath",false);
 		all_edgelabels.exit().classed("old_edgelabel0",true).classed("active_edgelabel",false);
 
 		
 		// handling active links associated to the data
-		var edgepaths_e = all_edgepaths.enter(),
+		var edgepaths_e = alledgepaths.enter(),
 			edgelabels_e = all_edgelabels.enter(),
 			link_e = all_links.enter();
 		var decor_out = graphShapes.decorate_link(link_e,edgepaths_e,edgelabels_e);
@@ -361,7 +361,7 @@ var graph_viz = (function(){
 	
 		// previous links plus new links are merged
 		_links = _links.merge(all_links);
-		edgepaths = edgepaths.merge(all_edgepaths);
+		edgepaths = edgepaths.merge(alledgepaths);
 		edgelabels = edgelabels.merge(all_edgelabels);
 
 		//sort links by source, then target
@@ -387,7 +387,7 @@ var graph_viz = (function(){
 		};
 
 		//sort edgepaths by source, then target
-		_edgepaths.sort(function(a,b) {
+		edgepaths.sort(function(a,b) {
 			if (a.source > b.source) {return 1;}
 			else if (a.source < b.source) {return -1;}
 			else {
@@ -399,13 +399,13 @@ var graph_viz = (function(){
 
 		//
 		//any edgepaths with duplicate source and target get an incremented 'linknum'
-		for (var i=0; i<_edgepaths.length; i++) {
+		for (var i=0; i<edgepaths.length; i++) {
 			if (i != 0 &&
-				_edgepaths[i].source == _edgepaths[i-1].source &&
-				_edgepaths[i].target == _edgepaths[i-1].target) {
-					_edgepaths[i].linknum = _edgepaths[i-1].linknum + 1;
+				edgepaths[i].source == edgepaths[i-1].source &&
+				edgepaths[i].target == edgepaths[i-1].target) {
+					edgepaths[i].linknum = edgepaths[i-1].linknum + 1;
 				}
-			else {_edgepaths[i].linknum = 1;};
+			else {edgepaths[i].linknum = 1;};
 		};
 
 
