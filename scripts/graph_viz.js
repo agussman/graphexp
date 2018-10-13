@@ -500,6 +500,33 @@ var graph_viz = (function(){
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
+			//sort edgepaths by source, then target
+			edgepaths.sort(function(a,b) {
+				if (a.source > b.source) {return 1;}
+				else if (a.source < b.source) {return -1;}
+				else {
+					if (a.target > b.target) {return 1;}
+					if (a.target < b.target) {return -1;}
+					else {return 0;}
+				}
+			});
+
+			//
+			//any edgepaths with duplicate source and target get an incremented 'linknum'
+			for (var i=0; i<edgepaths.length; i++) {
+				if (i != 0 &&
+					edgepaths[i].source == edgepaths[i-1].source &&
+					edgepaths[i].target == edgepaths[i-1].target) {
+						edgepaths[i].linknum = edgepaths[i-1].linknum + 1;
+						console.log("linknum: ?");
+					}
+				else {
+					console.log("linknum: 1");
+					edgepaths[i].linknum = 1;
+				};
+			};
+
+
 			// This appears to be the actual drawn edges?
 			edgepaths.attr('d', function (d) {
 				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
