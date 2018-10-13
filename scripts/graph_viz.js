@@ -509,10 +509,10 @@ var graph_viz = (function(){
 				// var ry = (d.target.y - d.source.y) / 4;
 				// return 'M ' + d.source.x + ' ' + d.source.y
 				//     + ' A ' + rx + ' ' + ry + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
-
-				var dx = d.target.x - d.source.x,
-				dy = d.target.y - d.source.y,
-				dr = Math.sqrt(dx * dx + dy * dy) / d.linknum;
+				console.log(d.linknum);
+				var dx = d.target.x - d.source.x;
+				var dy = d.target.y - d.source.y;
+				var dr = Math.sqrt(dx * dx + dy * dy) / 1;
 				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
 			});
 
