@@ -362,6 +362,7 @@ var graph_viz = (function(){
 		// previous links plus new links are merged
 		_links = _links.merge(all_links);
 		edgepaths = edgepaths.merge(alledgepaths);
+		console.log("edgepaths length: "+edgepaths.length);
 		edgelabels = edgelabels.merge(all_edgelabels);
 
 		//sort links by source, then target
