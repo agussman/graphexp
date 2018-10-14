@@ -332,13 +332,15 @@ var graph_viz = (function(){
 
 		//////////////////////////////////////
 		// link handling
-
+		console.log("_Links");
+		console.log(_Links);
 	 
 		//attach the data
 		var all_links = svg_graph.selectAll(".active_edge")
 			.data(_Links, function(d) { return d.id; });
 		var alledgepaths = svg_graph.selectAll(".active_edgepath")
 			.data(_Links, function(d) { return d.id; });
+		console.log(alledgepaths);
 		var all_edgelabels = svg_graph.selectAll(".active_edgelabel")
 			.data(_Links, function(d) { return d.id; });
 	  
