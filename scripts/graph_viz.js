@@ -478,9 +478,8 @@ var graph_viz = (function(){
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
-			console.log("edgepaths");
-			console.log(edgepaths.length);
-			console.log(edgepaths);
+			// console.log("edgepaths");
+			// console.log(edgepaths);
 
 			// This appears to be the actual drawn edges?
 			edgepaths.attr('d', function (d) {
@@ -499,7 +498,7 @@ var graph_viz = (function(){
 				console.log(d.linknum);
 				var dx = d.target.x - d.source.x;
 				var dy = d.target.y - d.source.y;
-				var dr = Math.sqrt(dx * dx + dy * dy) / 1;
+				var dr = Math.sqrt(dx * dx + dy * dy) / d.linknum;
 				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
 			});
 
