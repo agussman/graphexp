@@ -498,7 +498,7 @@ var graph_viz = (function(){
 				console.log(d.linknum);
 				var dx = d.target.x - d.source.x;
 				var dy = d.target.y - d.source.y;
-				var dr = Math.sqrt(dx * dx + dy * dy) / d.linknum;
+				var dr = Math.sqrt( (dx * dx + dy * dy) / d.linknum ) ;
 				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
 			});
 
