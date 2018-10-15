@@ -196,6 +196,31 @@ var graph_viz = (function(){
 			_Links = find_active_links(_Links,_Nodes); // then find the ones that are between active nodes
 			// TODO Insert bilinks here?
 
+			//sort links by source, then target, then label
+			_Links.sort(function(a,b) {
+				if (a.source > b.source) {return 1;}
+				else if (a.source < b.source) {return -1;}
+				else {
+					if (a.target > b.target) {return 1;}
+					if (a.target < b.target) {return -1;}
+					else {
+						if (a.label > b.label) {return 1;}
+						if (a.label < b.label) {return -1;}
+						else {return 0;}
+					}
+				}
+			});
+
+			//any links with duplicate source and target get an incremented 'linknum'
+			for (var i=0; i<_Links.length; i++) {
+				if (i != 0 &&
+					_Links[i].source == _Links[i-1].source &&
+					_Links[i].target == _Links[i-1].target) {
+						_Links[i].linknum = _Links[i-1].linknum + 1;
+					}
+				else {_Links[i].linknum = 1;};
+			};	
+
 		}
 
 		function updateAdd(array1,array2){
@@ -367,55 +392,6 @@ var graph_viz = (function(){
 		console.log("edgepaths length: "+edgepaths.length);
 		edgelabels = edgelabels.merge(all_edgelabels);
 
-		//sort links by source, then target
-		_links.sort(function(a,b) {
-			if (a.source > b.source) {return 1;}
-			else if (a.source < b.source) {return -1;}
-			else {
-				if (a.target > b.target) {return 1;}
-				if (a.target < b.target) {return -1;}
-				else {return 0;}
-			}
-		});
-
-		//
-		//any links with duplicate source and target get an incremented 'linknum'
-		for (var i=0; i<_links.length; i++) {
-			if (i != 0 &&
-				_links[i].source == _links[i-1].source &&
-				_links[i].target == _links[i-1].target) {
-					_links[i].linknum = _links[i-1].linknum + 1;
-				}
-			else {_links[i].linknum = 1;};
-		};
-
-		//sort edgepaths by source, then target
-		edgepaths.sort(function(a,b) {
-			if (a.source > b.source) {return 1;}
-			else if (a.source < b.source) {return -1;}
-			else {
-				if (a.target > b.target) {return 1;}
-				if (a.target < b.target) {return -1;}
-				else {return 0;}
-			}
-		});
-
-		//
-		//any edgepaths with duplicate source and target get an incremented 'linknum'
-		for (var i=0; i<edgepaths.length; i++) {
-			if (i != 0 &&
-				edgepaths[i].source == edgepaths[i-1].source &&
-				edgepaths[i].target == edgepaths[i-1].target) {
-					edgepaths[i].linknum = edgepaths[i-1].linknum + 1;
-					console.log("linknum: ?");
-				}
-			else {
-				console.log("linknum: 1");
-				edgepaths[i].linknum = 1;
-			};
-		};
-
-
 		///////////////////////////////////
 		// node handling
 
@@ -505,33 +481,6 @@ var graph_viz = (function(){
 			console.log("edgepaths");
 			console.log(edgepaths.length);
 			console.log(edgepaths);
-
-			//sort edgepaths by source, then target
-			edgepaths.sort(function(a,b) {
-				if (a.source > b.source) {return 1;}
-				else if (a.source < b.source) {return -1;}
-				else {
-					if (a.target > b.target) {return 1;}
-					if (a.target < b.target) {return -1;}
-					else {return 0;}
-				}
-			});
-
-			//
-			//any edgepaths with duplicate source and target get an incremented 'linknum'
-			for (var i=0; i<edgepaths.length; i++) {
-				if (i != 0 &&
-					edgepaths[i].source == edgepaths[i-1].source &&
-					edgepaths[i].target == edgepaths[i-1].target) {
-						edgepaths[i].linknum = edgepaths[i-1].linknum + 1;
-						console.log("linknum: ?");
-					}
-				else {
-					console.log("linknum: 1");
-					edgepaths[i].linknum = 1;
-				};
-			};
-
 
 			// This appears to be the actual drawn edges?
 			edgepaths.attr('d', function (d) {
