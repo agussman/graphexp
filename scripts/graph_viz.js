@@ -363,20 +363,20 @@ var graph_viz = (function(){
 		//attach the data
 		var all_links = svg_graph.selectAll(".active_edge")
 			.data(_Links, function(d) { return d.id; });
-		var alledgepaths = svg_graph.selectAll(".active_edgepath")
+		var all_edgepaths = svg_graph.selectAll(".active_edgepath")
 			.data(_Links, function(d) { return d.id; });
-		console.log(alledgepaths);
+		console.log(all_edgepaths);
 		var all_edgelabels = svg_graph.selectAll(".active_edgelabel")
 			.data(_Links, function(d) { return d.id; });
 	  
 		// links not active anymore are classified old_links
 		all_links.exit().classed("old_edge0",true).classed("active_edge",false);
-		alledgepaths.exit().classed("old_edgepath0",true).classed("active_edgepath",false);
+		all_edgepaths.exit().classed("old_edgepath0",true).classed("active_edgepath",false);
 		all_edgelabels.exit().classed("old_edgelabel0",true).classed("active_edgelabel",false);
 
 		
 		// handling active links associated to the data
-		var edgepaths_e = alledgepaths.enter(),
+		var edgepaths_e = all_edgepaths.enter(),
 			edgelabels_e = all_edgelabels.enter(),
 			link_e = all_links.enter();
 		var decor_out = graphShapes.decorate_link(link_e,edgepaths_e,edgelabels_e);
@@ -388,7 +388,7 @@ var graph_viz = (function(){
 	
 		// previous links plus new links are merged
 		_links = _links.merge(all_links);
-		edgepaths = edgepaths.merge(alledgepaths);
+		edgepaths = edgepaths.merge(all_edgepaths);
 		console.log("edgepaths length: "+edgepaths.length);
 		edgelabels = edgelabels.merge(all_edgelabels);
 
