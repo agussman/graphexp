@@ -441,40 +441,11 @@ var graph_viz = (function(){
 		// handling simulation steps
 		// move the nodes and links at each simulation step, following this rule:
 		function ticked() {
-
-			var bilinks = [];
-
-//			_links.forEach(function(link) {
-//				var s = link.source = nodeById.get(link.source),
-//					t = link.target = nodeById.get(link.target),
-//					i = {}; // intermediate node
-//				_nodes.push(i);
-//				links.push({source: s, target: i}, {source: i, target: t});
-//				bilinks.push([s, i, t]);
-//			  });
-
-
-			// NOt sure this is used?
-			_links.attr('d', function (d) {
-				//console.log("YTMND T");
-				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
-//				  return "M" + d[0].x + "," + d[0].y
-//					+ "S" + d[1].x + "," + d[1].y
-//					+ " " + d[2].x + "," + d[2].y;
-
-//				var midx = (d.source.x + d.target.x) / 2;
-//				var midy = (d.source.y + d.target.y) / 2;
-//				return 'M ' + d.source.x + ' ' + d.source.y
-//				    + ' S ' + midx + ' ' + midy
-//				    + ' ' + d.target.x + ' ' + d.target.y;
-				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
-				var dx = (d.target.x - d.source.x);
-				var dy = (d.target.y - d.source.y);
-				//var dr = Math.sqrt(dx * dx + dy * dy);
-				var dr = 75 / d.linknum;
-				// return 'M ' + d.source.x + ' ' + d.source.y
-				//     + ' A ' + dr + ' ' + dr + ' 0 0,1 '+ d.target.x + ' ' + d.target.y;
-			});
+			_links
+				.attr("x1", function(d) { return d.source.x; })
+				.attr("y1", function(d) { return d.source.y; })
+				.attr("x2", function(d) { return d.target.x; })
+				.attr("y2", function(d) { return d.target.y; });
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 
