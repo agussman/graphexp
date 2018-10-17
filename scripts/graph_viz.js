@@ -441,15 +441,12 @@ var graph_viz = (function(){
 		// handling simulation steps
 		// move the nodes and links at each simulation step, following this rule:
 		function ticked() {
-			_links
-				// .attr("x1", function(d) { return d.source.x; })
-				// .attr("y1", function(d) { return d.source.y; })
-				// .attr("x2", function(d) { return d.target.x; })
-				// .attr("y2", function(d) { return d.target.y; });
+			_links.attr('d', function (d) {
 				var dx = d.target.x - d.source.x;
 				var dy = d.target.y - d.source.y;
 				var dr = Math.sqrt( (dx * dx + dy * dy) / d.linknum ) ;
 				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
 

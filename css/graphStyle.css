@@ -55,17 +55,9 @@
   stroke-opacity: 0.6;
 }
 
-.links path {
-  stroke: #090;
-  stroke-opacity: 0.6;
-}
-
 path {
-  stroke: #900;
-  stroke-opacity: 0.6;
+  fill: none;
 }
-
-
 
 /*
 
