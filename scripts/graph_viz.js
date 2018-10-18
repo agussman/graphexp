@@ -219,7 +219,18 @@ var graph_viz = (function(){
 						_Links[i].linknum = _Links[i-1].linknum + 1;
 					}
 				else {_Links[i].linknum = 1;};
-			};	
+			};
+
+                        // Set a "Sweep" flag so that links in opposite directions don't overlap
+                        _Links.forEach( function(e) {
+                          if (e.source >= e.target) {
+                            e.sweep = 1;
+                          } else {
+                            e.sweep = 0;
+                          }
+                        });
+
+
 
 		}
 
