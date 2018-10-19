@@ -456,7 +456,7 @@ var graph_viz = (function(){
 				var dx = d.target.x - d.source.x;
 				var dy = d.target.y - d.source.y;
 				var dr = Math.sqrt( (dx * dx + dy * dy) / d.linknum ) ;
-				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,"+d.sweep+" " + d.target.x + "," + d.target.y;
 			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
@@ -482,7 +482,7 @@ var graph_viz = (function(){
 				var dx = d.target.x - d.source.x;
 				var dy = d.target.y - d.source.y;
 				var dr = Math.sqrt( (dx * dx + dy * dy) / d.linknum ) ;
-				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,"+d.sweep+" " + d.target.x + "," + d.target.y;
 			});
 
 			edgelabels.attr('transform', function (d) {
