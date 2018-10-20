@@ -453,10 +453,14 @@ var graph_viz = (function(){
 		// move the nodes and links at each simulation step, following this rule:
 		function ticked() {
 			_links.attr('d', function (d) {
-				var dx = d.target.x - d.source.x;
-				var dy = d.target.y - d.source.y;
-				var dr = Math.sqrt( (dx * dx + dy * dy) / d.linknum ) ;
-				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,"+d.sweep+" " + d.target.x + "," + d.target.y;
+                                if (use_curved_edges) {
+				  var dx = d.target.x - d.source.x;
+				  var dy = d.target.y - d.source.y;
+				  var dr = Math.sqrt( (dx * dx + dy * dy) / d.linknum ) ;
+				  return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,"+d.sweep+" " + d.target.x + "," + d.target.y;
+                                } else {
+                                  return "M" + d.source.x + "," + d.source.y + "L" + d.target.x + "," + d.target.y;
+                                }
 			});
 			_nodes
 				.attr("transform", function(d) { return "translate(" + d.x + ", " + d.y + ")"; }); 
