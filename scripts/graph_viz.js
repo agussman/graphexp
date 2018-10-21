@@ -226,7 +226,7 @@ var graph_viz = (function () {
 				if (e.source >= e.target) {
 					e.sweep = 1;
 				} else {
-					e.sweep = 0;
+					e.sweep = 1;
 				}
 			});
 
