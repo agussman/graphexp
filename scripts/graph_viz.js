@@ -220,18 +220,6 @@ var graph_viz = (function () {
 				}
 				else { _Links[i].linknum = 1; };
 			};
-
-			// Set a "Sweep" flag so that links in opposite directions don't overlap
-			_Links.forEach(function (e) {
-				if (e.source >= e.target) {
-					e.sweep = 1;
-				} else {
-					e.sweep = 1;
-				}
-			});
-
-
-
 		}
 
 		function updateAdd(array1, array2) {
@@ -457,7 +445,7 @@ var graph_viz = (function () {
 					var dx = d.target.x - d.source.x;
 					var dy = d.target.y - d.source.y;
 					var dr = Math.sqrt((dx * dx + dy * dy) / d.linknum);
-					return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0," + d.sweep + " " + d.target.x + "," + d.target.y;
+					return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
 				} else {
 					return "M" + d.source.x + "," + d.source.y + "L" + d.target.x + "," + d.target.y;
 				}
@@ -465,28 +453,15 @@ var graph_viz = (function () {
 			_nodes
 				.attr("transform", function (d) { return "translate(" + d.x + ", " + d.y + ")"; });
 
-			// console.log("edgepaths");
-			// console.log(edgepaths);
-
-			// This appears to be the actual drawn edges?
 			edgepaths.attr('d', function (d) {
-				// return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
-				//console.log("YTMND T");
-				// var midx = (d.source.x + d.target.x) / 2;
-				// var midy = (d.source.y + d.target.y) / 2;
-				//return 'M ' + d.source.x + ' ' + d.source.y
-				//    + ' S ' + midx + ' ' + midy
-				//    + ' ' + d.target.x + ' ' + d.target.y;
-				//return 'M ' + d.source.x + ' ' + d.source.y + ' T ' + d.target.x + ' ' + d.target.y;
-				// var rx = (d.target.x - d.source.x) / 4;
-				// var ry = (d.target.y - d.source.y) / 4;
-				// return 'M ' + d.source.x + ' ' + d.source.y
-				//     + ' A ' + rx + ' ' + ry + ' 0 0 1 '+ d.target.x + ' ' + d.target.y;
-				console.log(d.linknum);
-				var dx = d.target.x - d.source.x;
-				var dy = d.target.y - d.source.y;
-				var dr = Math.sqrt((dx * dx + dy * dy) / d.linknum);
-				return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0," + d.sweep + " " + d.target.x + "," + d.target.y;
+				if (use_curved_edges) {
+					var dx = d.target.x - d.source.x;
+					var dy = d.target.y - d.source.y;
+					var dr = Math.sqrt((dx * dx + dy * dy) / d.linknum);
+					return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+				} else {
+					return "M" + d.source.x + "," + d.source.y + "L" + d.target.x + "," + d.target.y;
+				}
 			});
 
 			edgelabels.attr('transform', function (d) {
